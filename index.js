@@ -39,6 +39,9 @@ function onImageClick(event) {
 
     modalImageEl.setAttribute('src', event.target.getAttribute('data-src'));
     modalImageEl.setAttribute('alt', event.target.getAttribute('alt'));
+
+    window.addEventListener('keydown', onEcsClick);
+
 }
 
 //Закрытие модального окна
@@ -54,4 +57,17 @@ function onModalClose(event) {
     modalEl.classList.remove('is-open');
     modalImageEl.setAttribute('src', '');
     modalImageEl.setAttribute('alt', '');
+
+    window.removeEventListener('keydown', onEcsClick);
+}
+
+
+function onEcsClick(event) {
+    if (event.code !== 'Escape') {
+        return
+    }
+    console.log(event.key);
+    modalEl.classList.remove('is-open');
+
+    window.removeEventListener('keydown', onEcsClick);
 }

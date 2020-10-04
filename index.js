@@ -35,8 +35,6 @@ function onImageClick(event) {
     }
 
     modalEl.classList.add('is-open');
-    console.log(event.target.getAttribute('data-src'));
-
     modalImageEl.setAttribute('src', event.target.getAttribute('data-src'));
     modalImageEl.setAttribute('alt', event.target.getAttribute('alt'));
 
@@ -49,22 +47,22 @@ function onImageClick(event) {
 modalEl.addEventListener('click', onModalClose);
 
 function onModalClose(event) {
-    if (event.target.nodeName === 'BUTTON') {
-        console.log(event.target.nodeName);
-        modalEl.classList.remove('is-open');
-        modalImageEl.setAttribute('src', '');
-        modalImageEl.setAttribute('alt', '');
-
-        window.removeEventListener('keydown', onEcsClick);
+    if (event.target.nodeName === 'IMG') {
+        return;
     }
-    return;
+
+    modalEl.classList.remove('is-open');
+    modalImageEl.setAttribute('src', '');
+    modalImageEl.setAttribute('alt', '');
+
+    window.removeEventListener('keydown', onEcsClick);
 }
+
 
 function onEcsClick(event) {
     if (event.code !== 'Escape') {
         return
     }
-    console.log(event.key);
     modalEl.classList.remove('is-open');
 
     window.removeEventListener('keydown', onEcsClick);

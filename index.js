@@ -49,18 +49,16 @@ function onImageClick(event) {
 modalEl.addEventListener('click', onModalClose);
 
 function onModalClose(event) {
-    if (event.target.nodeName === 'IMG') {
-        return;
+    if (event.target.nodeName === 'BUTTON') {
+        console.log(event.target.nodeName);
+        modalEl.classList.remove('is-open');
+        modalImageEl.setAttribute('src', '');
+        modalImageEl.setAttribute('alt', '');
+
+        window.removeEventListener('keydown', onEcsClick);
     }
-
-    console.log(event.target.nodeName);
-    modalEl.classList.remove('is-open');
-    modalImageEl.setAttribute('src', '');
-    modalImageEl.setAttribute('alt', '');
-
-    window.removeEventListener('keydown', onEcsClick);
+    return;
 }
-
 
 function onEcsClick(event) {
     if (event.code !== 'Escape') {
